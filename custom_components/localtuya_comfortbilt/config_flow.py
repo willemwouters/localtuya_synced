@@ -243,7 +243,7 @@ async def validate_input(hass: core.HomeAssistant, data):
     reset_ids = None
     try:
         if(float(data[CONF_PROTOCOL_VERSION]) == 3.4):
-            module = import_module('custom_components.localtuya.tinytuya.tinytuya')
+            module = import_module('custom_components.localtuya_comfortbilt.tinytuya.tinytuya')
             interface = await module.connect(
                 data[CONF_HOST],
                 data[CONF_DEVICE_ID],

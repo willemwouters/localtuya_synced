@@ -191,7 +191,7 @@ class TuyaDevice(pytuya.TuyaListener, pytuya.ContextualLogger):
 
         try:
             if(float(self._dev_config_entry[CONF_PROTOCOL_VERSION]) == 3.4):
-                module = importlib.import_module('custom_components.localtuya.tinytuya.tinytuya')
+                module = importlib.import_module('custom_components.localtuya_comfortbilt.tinytuya.tinytuya')
             
                 self._interface = await module.connect(
                     self._dev_config_entry[CONF_HOST],

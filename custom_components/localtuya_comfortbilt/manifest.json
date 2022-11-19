@@ -2,12 +2,12 @@
   "domain": "localtuya_comfortbilt",
   "name": "LocalTuya for ComfortBilt",
   "version": "4.2.1",
-  "documentation": "https://github.com/noahajac/localtuya/",
+  "documentation": "https://github.com/noahajac/localtuya_comfortbilt",
   "dependencies": [],
   "codeowners": [
     "@rospogrigio", "@postlund", "@willemwouters", "@noahajac"
   ],
-  "issue_tracker": "https://github.com/noahajac/localtuya/issues",
+  "issue_tracker": "https://github.com/noahajac/localtuya_comfortbilt/issues",
   "requirements": [],
   "config_flow": true,
   "iot_class": "local_push"
