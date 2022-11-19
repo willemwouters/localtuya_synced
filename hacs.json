@@ -1,6 +1,7 @@
 {
-  "name": "Local Tuya",
+  "name": "Local Tuya for ComfortBilt",
   "domains": ["climate", "cover", "fan", "light", "number", "select", "sensor", "switch"],
   "homeassistant": "0.116.0",
-  "iot_class": ["Local Push"]
+  "iot_class": ["Local Push"],
+  "render_readme": true
 }
