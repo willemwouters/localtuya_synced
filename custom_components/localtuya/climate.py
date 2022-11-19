@@ -76,6 +76,10 @@ HVAC_MODE_SETS = {
         HVAC_MODE_HEAT: "1",
         HVAC_MODE_AUTO: "0",
     },
+    "temp1/manual": {
+        HVAC_MODE_HEAT: "manual",
+        HVAC_MODE_AUTO: "temp1",
+    },
 }
 HVAC_ACTION_SETS = {
     "True/False": {
@@ -130,7 +134,9 @@ def flow_schema(dps):
         vol.Optional(CONF_HVAC_ACTION_DP): vol.In(dps),
         vol.Optional(CONF_HVAC_ACTION_SET): vol.In(list(HVAC_ACTION_SETS.keys())),
         vol.Optional(CONF_ECO_DP): vol.In(dps),
-        vol.Optional(CONF_ECO_VALUE): str,
+        vol.Optional(CONF_ECO_VALUE): vol.In(
+            [True]
+        ),
         vol.Optional(CONF_PRESET_DP): vol.In(dps),
         vol.Optional(CONF_PRESET_SET): vol.In(list(PRESET_SETS.keys())),
         vol.Optional(CONF_TEMPERATURE_UNIT): vol.In(
@@ -265,6 +271,7 @@ class LocaltuyaClimate(LocalTuyaEntity, ClimateEntity):
         presets = list(self._conf_preset_set)
         if self._conf_eco_dp:
             presets.append(PRESET_ECO)
+            presets.append(PRESET_NONE)
         return presets
 
     @property
@@ -329,6 +336,9 @@ class LocaltuyaClimate(LocalTuyaEntity, ClimateEntity):
         """Set new target preset mode."""
         if preset_mode == PRESET_ECO:
             await self._device.set_dp(self._conf_eco_value, self._conf_eco_dp)
+            return
+        elif preset_mode == PRESET_NONE:
+            await self._device.set_dp(False, self._conf_eco_dp)
             return
         await self._device.set_dp(
             self._conf_preset_set[preset_mode], self._conf_preset_dp
